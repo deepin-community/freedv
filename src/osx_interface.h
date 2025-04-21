@@ -1,0 +1,49 @@
+//==========================================================================
+// Name:            osx_interface.h
+//
+// Purpose:         Provides C wrapper to needed Objective-C calls.
+// Created:         Nov. 23, 2019
+// Authors:         Mooneer Salem
+// 
+// License:
+//
+//  This program is free software; you can redistribute it and/or modify
+//  it under the terms of the GNU General License version 2.1,
+//  as published by the Free Software Foundation.  This program is
+//  distributed in the hope that it will be useful, but WITHOUT ANY
+//  WARRANTY; without even the implied warranty of MERCHANTABILITY or
+//  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public
+//  License for more details.
+//
+//  You should have received a copy of the GNU General License
+//  along with this program; if not, see <http://www.gnu.org/licenses/>.
+//
+//==========================================================================
+#ifndef __OSX_INTERFACE__
+#define __OSX_INTERFACE__
+
+// Checks whether FreeDV has permissions to access the microphone on OSX Catalina
+// and above. If the user doesn't grant permissions (returns FALSE), the GUI 
+// should be able to properly handle the situation.
+#ifdef __APPLE__
+extern "C" bool VerifyMicrophonePermissions();
+#else
+// Stub for non-Apple platforms
+#define VerifyMicrophonePermissions() (true)
+#endif // __APPLE__
+
+#ifdef __APPLE__
+// macOS does color space conversions in the background when rendering PlotWaterfall.
+// This causes FreeDV to use ~30-50% more CPU that it otherwise would (despite wxWidgets
+// using sRGB internally). Because of this, we reset the main window's color space to 
+// sRGB ourselves on every frame render.
+//
+// See https://github.com/OpenTTD/OpenTTD/issues/7644 and https://trac.wxwidgets.org/ticket/18516
+// for more details.
+extern "C" void ResetMainWindowColorSpace();
+#else
+// Stub for non-Apple platforms
+#define ResetMainWindowColorSpace() 
+#endif // __APPLE__
+
+#endif // __OSX_INTERFACE__

@@ -1,0 +1,4 @@
+version=4
+ opts="filenamemangle=s%(?:.*?)?v?(\d[\d.]*)\.tar\.gz%freedv_$1.orig.tar.gz%" \
+ https://github.com/drowe67/freedv-gui/tags \
+ (?:.*?/)?v?(\d[\d.]*)\.tar\.gz debian uupdate

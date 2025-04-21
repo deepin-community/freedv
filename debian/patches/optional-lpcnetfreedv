@@ -1,0 +1,28 @@
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Subject: optional lpcnetfreedv
+
+Debian codec2 libraries contain lpcnetfreedv modes,
+having a separate lpcnetfreedv library is optional.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -308,7 +308,7 @@
+         get_target_property(CODEC2_INCLUDE_DIRS codec2 INTERFACE_INCLUDE_DIRECTORIES)
+         message(STATUS "  codec2 library: ${CODEC2_LIBRARY}")
+         message(STATUS "  codec2 headers: ${CODEC2_INCLUDE_DIRS}")
+-        find_package(lpcnetfreedv REQUIRED)
++        find_package(lpcnetfreedv)
+     else()
+         # Try to find manually
+         find_path(CODEC2_INCLUDE_DIRS codec2.h
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -81,7 +81,7 @@
+ if(APPLE)
+ target_link_libraries(FreeDV fdv_audio fdv_audio_pipeline fdv_reporting fdv_sox lpcnetfreedv codec2)
+ else(APPLE)
+-target_link_libraries(freedv fdv_audio fdv_audio_pipeline fdv_reporting fdv_sox lpcnetfreedv codec2)
++target_link_libraries(freedv fdv_audio fdv_audio_pipeline fdv_reporting fdv_sox codec2)
+ endif(APPLE)
+ 
+ # Add build dependencies for internally built external libraries.

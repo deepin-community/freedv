@@ -1,5 +1,232 @@
-template-repository (1.0-1) unstable; urgency=medium
+freedv (1.8.11-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 11 Jul 2023 13:10:52 -0400
+
+freedv (1.8.7-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 20 Jan 2023 21:47:50 -0500
+
+freedv (1.8.5-1) unstable; urgency=medium
+
+  * New upstream release.
+    Update FreeDV configuration defaults to improve first-time usability.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 10 Dec 2022 15:45:18 -0500
+
+freedv (1.8.4-1) unstable; urgency=medium
+
+  [ Christoph Berg ]
+  * Update watch file to look at github tags.
+
+  [ A. Maitland Bottoms ]
+  * New upstream release.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 04 Nov 2022 10:17:11 -0400
+
+freedv (1.8.3.1-3) unstable; urgency=medium
+
+  * Team upload.
+  * Update build-dep for wxWidgets to 3.2 (Closes: #1019794)
+  * Update lintian-overrides
+
+ -- tony mancill <tmancill@debian.org>  Fri, 16 Sep 2022 22:45:43 -0700
+
+freedv (1.8.3.1-2) unstable; urgency=medium
+
+  * Set USE_PULSEAUDIO correctly without gbp changing it. (Closes: 1006419)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 27 Aug 2022 16:39:51 -0400
+
+freedv (1.8.3.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Set USE_PULSEAUDIO correctly (Closes: 1006419)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 27 Aug 2022 16:24:16 -0400
+
+freedv (1.8.2-1) unstable; urgency=medium
+
+  [ Daniele Forsi ]
+  * debian/copyright: use spaces rather than tabs to start continuation lines.
+  * Update standards version to 4.6.0, no changes needed.
+
+  [ A. Maitland Bottoms ]
+  * New upstream release.
+  * Update standards version to 4.6.1, no changes needed.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 13 Aug 2022 15:23:50 -0400
+
+freedv (1.7.0-2) unstable; urgency=medium
+
+  * Actually Enable building with pulseaudio (Thanks wolfgang!)
+    (Closes: #1006419)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 28 Mar 2022 20:28:17 -0400
+
+freedv (1.7.0-1) unstable; urgency=medium
+
+  * New upstream release.
+    Pulseaudio support
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 06 Feb 2022 11:19:49 -0500
+
+freedv (1.6.1-2) unstable; urgency=medium
+
+  * upload to master since codec2 1.0.1 is already there.
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 07 Dec 2021 20:05:58 -0500
+
+freedv (1.6.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * build without buggy AVX instruction test
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Wed, 10 Nov 2021 23:11:11 -0500
+
+freedv (1.4.3~1gdc71a1c-1) unstable; urgency=medium
+
+  [ Christoph Berg ]
+  * Use https homepage.
+  * Add debian/gitlab-ci.yml.
+  * Update description. (Closes: #935795)
+
+  [ A. Maitland Bottoms ]
+  * update to 1.4.3 using dc71a1c pending upstream release
+  * update standards-version
+  * Add upstream/metadata
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 17 Oct 2020 15:26:20 -0400
+
+freedv (1.4-2) unstable; urgency=medium
+
+  * Acknowledge NMU and rebuild without buggy AVX instruction test
+  * Point watch file at github.com/drowe67/freedv-gui
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 17 Feb 2020 12:42:28 -0500
+
+freedv (1.4-1.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Put x86 specific code behind ifdefs (Closes: 947828).
+
+ -- Peter Michael Green <plugwash@debian.org>  Tue, 07 Jan 2020 10:09:41 +0000
+
+freedv (1.4-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 17 Nov 2019 22:32:07 -0500
+
+freedv (1.3.1-3) unstable; urgency=medium
+
+  * Change VCS links to salsa
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 11 Aug 2018 21:47:07 -0400
+
+freedv (1.3.1-2) unstable; urgency=medium
+
+  * noise fix from 10 June 2018
+  "FreeDV 1.3.1 shipped with a noise simulator turned on by accident.
+  Injected noise to create a 2 dB SNR.
+  Despite this many people were working long-range communications!"
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 11 Aug 2018 19:20:08 -0400
+
+freedv (1.3.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * support codec2 0.8.1 (Closes: #903225)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 16 Jul 2018 22:52:22 -0400
+
+freedv (1.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * new 700D mode
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 27 May 2018 09:00:07 -0400
+
+freedv (1.2.2-2) unstable; urgency=medium
+
+  * Use local sox biquad filter code (Closes: #882203)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Mon, 27 Nov 2017 22:52:18 -0500
+
+freedv (1.2.2-1) unstable; urgency=medium
+
+  * New upstream release, using new modes in codec2 0.7
+    Improvements to Hamlib support, error message reporting, serial rate box.
+    Disabled unused UDP comms/egexp processing to clean up Options dialog.
+  * include AppStream metadata Comment in desktop file (LP: #1646467)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 15 Aug 2017 22:38:34 -0400
+
+freedv (1.2-1) experimental; urgency=medium
+
+  * New upstream release
+  * http://www.rowetel.com/?p=5456
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Wed, 15 Feb 2017 22:10:13 -0500
+
+freedv (1.1.0.3026-1) experimental; urgency=low
+
+  * New upstream experimental trials - svn 3026
+  * Highlights: FreeDV 1.2 / Codec2 0.6 test release
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 29 Jan 2017 16:07:00 -0500
+
+freedv (1.1-1) unstable; urgency=medium
+
+  * New upstream release, new Voice Keyer feature
+  * consistent 8000 Hz audio I/O sample rate. (requires codec2 >= 0.5)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 25 Sep 2015 23:22:18 -0400
+
+freedv (1.0-1) unstable; urgency=low
+
+  * New upstream release
+  * New source package name, following upstream conventions
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Tue, 01 Sep 2015 23:08:27 -0400
+
+fdmdv2 (0.96.6.1592-1) unstable; urgency=low
+
+  * New upstream 0.96.6 tagged release r1592
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Thu, 08 May 2014 19:32:42 -0400
+
+fdmdv2 (0.96.5.1353-1) experimental; urgency=low
+
+  * Upstream subversion r1353
+  * build-depend upon libwxgtk3.0-dev (Closes: #735959)
+    remove wxwidgets tarball from source (Closes: #735942, #736002)
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sun, 19 Jan 2014 15:25:41 -0500
+
+fdmdv2 (0.96.5.1328-1) experimental; urgency=low
+
+  * New upstream subversion r1328 (AKA 0.96.5 Beta)
+  * Update wxWidgets 2.9.5 version
+  * cleanup source - see debian/rules get-orig-source, (Closes: #706184)
+  * HID-PTT patch included
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 30 Aug 2013 23:16:27 -0400
+
+fdmdv2 (0.96.1-1) experimental; urgency=low
+
+  * FreeDV.org Dayton 2013 packages
+  * New upstream subversion r1247
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Sat, 11 May 2013 10:43:03 -0400
+
+fdmdv2 (0.0.1235-1) experimental; urgency=low
+
+  * New upstream svn r1235 (Closes: #706184)
+  * Fancy source package for single binary freedv package for Wheezy
+  * HID-PTT patch included
+
+ -- A. Maitland Bottoms <bottoms@debian.org>  Fri, 26 Apr 2013 20:44:30 -0400

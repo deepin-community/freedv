@@ -1,4 +1,16 @@
 #!/usr/bin/make -f
+include /usr/share/dpkg/pkg-info.mk
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 
 %:
-	dh $@
+	dh $@ --builddir=Build --build-system=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure --buildsystem=cmake -- \
+	 -DDEB_VERSION=$(DEB_VERSION) -DCMAKE_BUILD_TYPE=RelWithDebInfo -DUSE_STATIC_CODEC2=False \
+	 -DUSE_STATIC_SPEEXDSP=False -DUSE_PULSEAUDIO=True \
+	 -DUSE_SIOCLIENT=OFF
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf debian/freedv/usr/share/freedv-gui

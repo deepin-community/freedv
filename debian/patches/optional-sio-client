@@ -1,0 +1,94 @@
+From: "A. Maitland Bottoms" <bottoms@debian.org>
+Subject: optional sio client
+
+Debian does not yet have socket,io-sioclient-cpp
+packaged, so build without FreeDVReporter feature.
+
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -393,6 +393,8 @@
+ 
+ 
+ # sioclient library
++option(USE_SIOCLIENT "Report using sioclient." ON)
++if(USE_SIOCLIENT)
+ message(STATUS "Looking for sioclient...")
+ find_path(SIOCLIENT_INCLUDE_DIR sio_client.h)
+ find_library(SIOCLIENT_LIBRARY sioclient)
+@@ -406,7 +408,8 @@
+     message(STATUS "Using static sioclient build")
+     include(cmake/BuildSocketIo.cmake)
+ endif(SIOCLIENT_LIBRARY AND SIOCLIENT_INCLUDE_DIR)
+-
++add_definitions(-DUSE_SIOCLIENT)
++endif(USE_SIOCLIENT)
+ 
+ #
+ # Samplerate Library
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -77,6 +77,10 @@
+     add_executable(freedv WIN32 ${FREEDV_SOURCES} ${RES_FILES})
+ endif(APPLE)
+ 
++if(USE_SIOLOB)
++    target_compile_definitions(FreeDV USE_SIOCLIENT=1)
++endif(USE_SIOLOB)
++
+ # Link imported or build tree targets.
+ if(APPLE)
+ target_link_libraries(FreeDV fdv_audio fdv_audio_pipeline fdv_reporting fdv_sox lpcnetfreedv codec2)
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -37,7 +37,9 @@
+ #include "codec2_fdmdv.h"
+ #include "pipeline/TxRxThread.h"
+ #include "reporting/pskreporter.h"
++#ifdef USE_SIOCLIENT
+ #include "reporting/FreeDVReporter.h"
++#endif
+ 
+ #define wxUSE_FILEDLG   1
+ #define wxUSE_LIBPNG    1
+@@ -2087,9 +2089,10 @@
+                         assert(pskReporter != nullptr);
+                         wxGetApp().m_reporters.push_back(pskReporter);
+                     }
+-                    
++
+                     if (wxGetApp().m_freedvReporterEnabled && wxGetApp().m_freedvReporterHostname.ToStdString() != "")
+                     {
++#ifdef USE_SIOCLIENT
+                         auto freedvReporter =
+                             new FreeDVReporter(
+                                 wxGetApp().m_freedvReporterHostname.ToStdString(),
+@@ -2098,6 +2101,7 @@
+                                 std::string("FreeDV ") + FREEDV_VERSION);
+                         assert(freedvReporter);
+                         wxGetApp().m_reporters.push_back(freedvReporter);
++#endif
+                     }
+                     else if (wxGetApp().m_freedvReporterEnabled)
+                     {
+--- a/src/reporting/CMakeLists.txt
++++ b/src/reporting/CMakeLists.txt
+@@ -1,10 +1,17 @@
++message(STATUS "Reporting....")
++if(SIOCLIENT_ADD_DEPENDENCY)
+ add_library(fdv_reporting STATIC
+     pskreporter.cpp
+     pskreporter.h
+     FreeDVReporter.cpp
+     FreeDVReporter.h
+ )
+-
+-if(SIOCLIENT_ADD_DEPENDENCY)
+ add_dependencies(fdv_reporting sioclient)
++message(STATUS "Reporting via pskreporter and FreeDVReporter.")
++else(SIOCLIENT_ADD_DEPENDENCY)
++add_library(fdv_reporting STATIC
++    pskreporter.cpp
++    pskreporter.h
++)
++message(STATUS "Reporting via pskreporter only.")
+ endif(SIOCLIENT_ADD_DEPENDENCY)

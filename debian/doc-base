@@ -1,0 +1,14 @@
+Document: freedv
+Title: FreeDV User Manual
+Author: David Rowe and FreeDV developers
+Section: Amateur Radio
+
+Format: PDF
+Files: /usr/share/doc/freedv/USER_MANUAL.pdf.gz
+
+Format: HTML
+Index: /usr/share/doc/freedv/USER_MANUAL.html
+Files: /usr/share/doc/freedv/USER_MANUAL.html
+
+Format: text
+Files: /usr/share/doc/freedv/USER_MANUAL.md.gz
